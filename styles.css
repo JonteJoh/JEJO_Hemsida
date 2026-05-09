@@ -25,6 +25,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  overflow-x: hidden;
   background:
     radial-gradient(circle at 18% 8%, rgba(29, 231, 255, 0.16), transparent 28rem),
     radial-gradient(circle at 80% 18%, rgba(138, 92, 255, 0.17), transparent 31rem),
@@ -95,6 +96,7 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 10px;
+  min-width: 0;
   font-family: "Space Grotesk", Inter, sans-serif;
   font-size: 1rem;
   font-weight: 700;
@@ -102,10 +104,17 @@ img {
 }
 
 .brand img {
+  flex: 0 0 auto;
   width: 38px;
   height: 38px;
   object-fit: contain;
   filter: drop-shadow(0 0 14px rgba(29, 231, 255, 0.55));
+}
+
+.brand span {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .main-nav {
@@ -960,6 +969,7 @@ textarea:focus {
 
   .site-header {
     top: 10px;
+    gap: 12px;
   }
 
   .menu-toggle {
@@ -1003,7 +1013,11 @@ textarea:focus {
   }
 
   h1 {
-    font-size: clamp(2.58rem, 15vw, 4.2rem);
+    font-size: clamp(2.45rem, 14vw, 4.2rem);
+  }
+
+  h2 {
+    font-size: clamp(1.95rem, 10vw, 3rem);
   }
 
   .hero-actions,
@@ -1012,7 +1026,7 @@ textarea:focus {
   }
 
   .hero-visual {
-    min-height: 460px;
+    min-height: 430px;
   }
 
   .device-card {
@@ -1042,6 +1056,14 @@ textarea:focus {
     grid-template-columns: 1fr;
   }
 
+  .case-card {
+    gap: 16px;
+  }
+
+  .case-visual {
+    min-height: 150px;
+  }
+
   .glass-card,
   .about-panel,
   .process-step {
@@ -1055,6 +1077,108 @@ textarea:focus {
   .site-footer {
     align-items: flex-start;
     flex-direction: column;
+  }
+}
+
+@media (max-width: 480px) {
+  .site-shell {
+    width: min(100% - 22px, 1180px);
+  }
+
+  .brand {
+    font-size: 0.9rem;
+  }
+
+  .brand img {
+    width: 34px;
+    height: 34px;
+  }
+
+  .section {
+    padding: 64px 0;
+  }
+
+  .hero {
+    padding-top: 42px;
+  }
+
+  .hero-copy {
+    margin-top: 20px;
+    font-size: 1rem;
+  }
+
+  .hero-actions {
+    margin-top: 26px;
+  }
+
+  .hero-visual {
+    min-height: 360px;
+  }
+
+  .device-card {
+    inset: 26px 0 22px;
+  }
+
+  .device-card img {
+    width: min(86%, 300px);
+    padding: 22px;
+    transform: translateY(-58px);
+  }
+
+  .code-preview {
+    bottom: 16px;
+    width: min(88%, 270px);
+    min-height: 62px;
+  }
+
+  .floating-chip {
+    min-width: 50px;
+    height: 30px;
+    font-size: 0.66rem;
+  }
+
+  .chip-one {
+    right: 8px;
+  }
+
+  .chip-two {
+    left: 2px;
+  }
+
+  .chip-three {
+    right: 0;
+  }
+
+  .chip-four {
+    left: 4px;
+  }
+
+  .case-visual {
+    min-height: 136px;
+  }
+
+  .case-ai span:nth-child(1) {
+    width: 64%;
+  }
+
+  .case-ai span:nth-child(2),
+  .case-ai span:nth-child(3),
+  .case-ai span:nth-child(4) {
+    right: 20px;
+    left: 20px;
+    width: auto;
+  }
+
+  .case-operix span:nth-child(2) {
+    width: 52%;
+  }
+
+  .case-operix span:nth-child(3) {
+    width: 31%;
+  }
+
+  .case-cta {
+    padding: 22px;
   }
 }
 
