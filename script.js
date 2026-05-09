@@ -105,6 +105,6 @@ typeCode();
 
 form.addEventListener("submit", (event) => {
   event.preventDefault();
-  formStatus.textContent = "Tack! Din förfrågan är redo att kopplas till valfri e-postlösning.";
+  formStatus.textContent = "Tack! Vi har tagit emot din idé och återkommer så snart vi kan.";
   form.reset();
 });
