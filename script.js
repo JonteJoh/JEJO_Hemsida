@@ -1,4 +1,4 @@
-const header = document.querySelector("[data-header]");
+﻿const header = document.querySelector("[data-header]");
 const nav = document.querySelector("[data-nav]");
 const menuToggle = document.querySelector("[data-menu-toggle]");
 const form = document.querySelector("[data-contact-form]");
@@ -103,8 +103,44 @@ const typeCode = () => {
 
 typeCode();
 
-form.addEventListener("submit", (event) => {
+form.addEventListener("submit", async (event) => {
   event.preventDefault();
-  formStatus.textContent = "Tack! Vi har tagit emot din idé och återkommer så snart vi kan.";
-  form.reset();
+
+  const submitButton = form.querySelector("button[type='submit']");
+  const formData = new FormData(form);
+  const accessKey = (formData.get("access_key") || "").toString().trim();
+  const captchaToken = (formData.get("h-captcha-response") || "").toString().trim();
+
+  if (!accessKey || accessKey === "REPLACE_WITH_WEB3FORMS_ACCESS_KEY") {
+    formStatus.textContent = "Formuläret är inte konfigurerat än. Lägg in Web3Forms access key i index.html.";
+    return;
+  }
+
+  if (!captchaToken) {
+    formStatus.textContent = "Bekräfta captcha innan du skickar formuläret.";
+    return;
+  }
+
+  submitButton.disabled = true;
+  formStatus.textContent = "Skickar...";
+
+  try {
+    const response = await fetch(form.action, {
+      method: "POST",
+      body: formData,
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.message || "Skickningen misslyckades.");
+    }
+
+    formStatus.textContent = "Tack! Vi har tagit emot din idé och återkommer så snart vi kan.";
+    form.reset();
+  } catch (error) {
+    formStatus.textContent = "Något gick fel vid skickning. Testa igen om en stund eller maila app@jejostudios.se.";
+  } finally {
+    submitButton.disabled = false;
+  }
 });

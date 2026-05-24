@@ -331,7 +331,15 @@
             </div>
           </div>
 
-          <form class="contact-form glass-card reveal" data-contact-form>
+          <form
+            class="contact-form glass-card reveal"
+            data-contact-form
+            action="https://api.web3forms.com/submit"
+            method="POST"
+          >
+            <input type="hidden" name="access_key" value="c410f15f-652c-4842-b50d-6e183368f392" />
+            <input type="hidden" name="subject" value="Nytt meddelande från jejostudios.se" />
+            <input type="checkbox" name="botcheck" style="display: none" tabindex="-1" autocomplete="off" />
             <label>
               Namn
               <input type="text" name="name" autocomplete="name" placeholder="Ditt namn" required />
@@ -344,6 +352,7 @@
               Meddelande
               <textarea name="message" rows="5" placeholder="Berätta kort om projektet" required></textarea>
             </label>
+            <div class="h-captcha" data-captcha="true"></div>
             <button class="btn btn-primary" type="submit">Skicka min idé</button>
             <p class="form-status" role="status" data-form-status></p>
           </form>
@@ -360,6 +369,7 @@
       </footer>
     </div>
 
+    <script src="https://web3forms.com/client/script.js" async defer></script>
     <script src="script.js"></script>
   </body>
 </html>
