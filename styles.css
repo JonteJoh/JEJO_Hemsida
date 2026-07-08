@@ -726,6 +726,21 @@ p {
   margin-top: 2px;
 }
 
+.case-link {
+  width: fit-content;
+  color: var(--cyan);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.case-link:hover,
+.case-link:focus-visible {
+  color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 4px;
+}
+
 .case-card p {
   margin: 0;
 }
